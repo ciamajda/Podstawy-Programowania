@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1665593253 source:c:\users\wiktorstepniewski\rok\main.cpp
+	<iostream>
+	<cmath>
+

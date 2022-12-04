@@ -1,0 +1,3 @@
+C:/Users/Wiktor/Desktop/Studia/Podstawy Programowania/zad 2.4/cmake-build-debug/CMakeFiles/zad_2_4.dir
+C:/Users/Wiktor/Desktop/Studia/Podstawy Programowania/zad 2.4/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Wiktor/Desktop/Studia/Podstawy Programowania/zad 2.4/cmake-build-debug/CMakeFiles/rebuild_cache.dir

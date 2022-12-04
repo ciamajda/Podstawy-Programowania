@@ -1,0 +1,3 @@
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 5/cmake-build-debug-event-trace/CMakeFiles/cw5.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 5/cmake-build-debug-event-trace/CMakeFiles/edit_cache.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 5/cmake-build-debug-event-trace/CMakeFiles/rebuild_cache.dir

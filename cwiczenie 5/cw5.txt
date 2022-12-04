@@ -1,0 +1,126 @@
+//Wiktor Stępniewski
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+const int N=100, M=11;
+void wypelnij(int tab[], int rozmiar) {
+    for (int i = 0; i < rozmiar; i++) {
+        tab[i]=rand()%11;
+    }
+}
+void wypisz(int tab[]) {
+    for(int i = 0; i < N; i++){
+        cout<<tab[i] << ", ";
+    }
+}
+float srednia(int tab[]){
+    float avg;
+    for(int i = 0; i<N; i++){
+        int suma;
+        suma+=tab[i];
+        avg=(suma/N);
+    }
+    return avg;
+}
+float mediana(int tab[]){
+    float med;
+    int srd, srd2, srdnp;
+    srd2=(N/2)-1;
+    srd=N/2;
+    srdnp=((N+1)/2)-1;
+    if(N%2==0){
+        med=(tab[srd]+tab[srd2])/2.0;
+        return med;
+    }
+    else{
+        med=(tab[srdnp]);
+        return med;
+    }
+}
+void zlicz(int tab[], int tab2[]){
+    for(int i =0; i<N; i++){
+      for(int j=0; j<=10; j++){
+          if(j==tab[i]){
+            tab2[j]+=1;
+          }
+          else{}
+      }
+    }
+}
+void wyswietl_oceny(int tab[]){
+    for(int i=0; i<M; i++){
+        cout<<"Liczba ocen: "<<i<<" jest rowna: "<<tab[i] <<endl;
+    }
+}
+void wyzeruj_tabele(int tab[], int elementy_tablicy){
+    for(int i=0; i<M; i++){
+        tab[i]=0;
+    }
+}
+void rysuj_histogram(int tab[]){
+    for(int i=0; i<M; i++){
+        cout<<"Ilosc ocen "<<i<<":  ";
+        for(int j=0; j<tab[i]; j++){
+            cout<<"* ";
+        }
+        cout<<endl;
+    }
+}
+
+void sortowanie_babelkowe(int tab[], int elementy_tablicy){
+    for(int i=0; i<elementy_tablicy; i++){
+        for(int j=1; j<elementy_tablicy-i;j++){
+            if(tab[j-1]>tab[j]){
+                swap(tab[j-1], tab[j]);
+            }
+        }
+    }
+}
+void najwiekszy_element(int tab[], int elementy_tablicy){
+    int max, ilosc_max;
+    max=tab[0];
+    ilosc_max=1;
+    for(int i=1; i<=elementy_tablicy; i++){
+        if(max<tab[i]){
+            max=tab[i];
+        }
+    }
+    for(int i=0; i<elementy_tablicy; i++) {
+        if (max == tab[i]) {
+            if (ilosc_max == 1) {
+                cout << "Najwiecej razy (" << max << ") przyznano ocene " << i << "";
+            } else {
+                cout << ", oraz ocene " << i << "";
+            }
+            ilosc_max++;
+        }
+
+    }
+    cout<<endl<<endl;
+}
+
+
+
+int main() {
+    srand(time(NULL));
+    int oceny[N], ilosc_ocen[M];
+    wypelnij(oceny, N);
+    wypisz(oceny);
+    cout << endl;
+    cout<<"Srednia ocen: "<<srednia(oceny)<<"" <<endl;
+    cout<<"Mediana ocen: "<<mediana(oceny)<<"" <<endl;
+    wyzeruj_tabele(ilosc_ocen, M);
+    zlicz(oceny, ilosc_ocen);
+    wyswietl_oceny(ilosc_ocen);
+    cout << endl;
+    najwiekszy_element(ilosc_ocen, M);
+    rysuj_histogram(ilosc_ocen);
+
+
+
+
+
+    return 0;
+}

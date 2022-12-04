@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "(lldb) Dołącz",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "wprowadź nazwę programu, na przykład ${workspaceFolder}/a.out",
+            ,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "C/C++: clang++ Kompiluj i debuguj aktywny plik",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang++ kompiluj aktywny plik"
+        }
+    ],
+    "version": "2.0.0"
+}

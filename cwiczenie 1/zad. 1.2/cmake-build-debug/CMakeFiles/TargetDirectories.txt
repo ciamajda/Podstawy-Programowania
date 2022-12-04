@@ -1,0 +1,3 @@
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/zad. 1.2/cmake-build-debug/CMakeFiles/zad__1_2.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/zad. 1.2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/zad. 1.2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

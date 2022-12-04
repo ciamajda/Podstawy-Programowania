@@ -1,0 +1,5 @@
+# ninja log v5
+0	759	1670177833050927256	CMakeFiles/test_dynamiczna_alokacja_pamieci.dir/main.cpp.o	2685352b3e4769a6
+761	830	1670177833123810057	test_dynamiczna_alokacja_pamieci	3209cabdee46586c
+6	777	1670177872343200239	CMakeFiles/test_dynamiczna_alokacja_pamieci.dir/main.cpp.o	2685352b3e4769a6
+777	847	1670177872416538194	test_dynamiczna_alokacja_pamieci	3209cabdee46586c
