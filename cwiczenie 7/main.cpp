@@ -173,5 +173,5 @@ int main() {
         delete[] nowa[i];
     }
     delete [] nowa;
-    return 0;//zmiana git
+    return 0;
 }
