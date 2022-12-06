@@ -2,7 +2,7 @@
 #include <ctime>
 #include <iomanip>
 using namespace std;
-const int N = 5;
+const int N = 10;
 void wierszNajwiekszaSuma(int tab[][N]);
 void constructTablica(int tab[][N], int p, int k);
 void tablicaNaKonsole(int tab[][N]);
