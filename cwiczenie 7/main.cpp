@@ -3,117 +3,163 @@
 #include <iomanip>
 using namespace std;
 const int N = 5;
-
-void transpozycja(int tab[][N],int tabT[][N]){
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            tabT[i][j] = tab[j][i];
-        }
-    }
-}
-
-bool czySymetryczna(int tablica[][N]) {
-    int r = 0, przejscie;
-    for (int k = N - 1; k >= 0; k--) {
-        r++;
-        przejscie = N - r;
-        for (int w = 0; w < przejscie; w++) {
-            if (tablica[k][w] == tablica[w][k]);
-            else return false;
-        }
-    }
-    return true;
-}
-void czySymetrycznaMSG(bool test){
-    if (test == true) cout << "symetryczna";
-    else cout << "niesymetryczna" <<endl;
-}
-
-
+void wierszNajwiekszaSuma(int tab[][N]);
+void constructTablica(int tab[][N], int p, int k);
+void tablicaNaKonsole(int tab[][N]);
+void sortowanie(int A[][N], char typ, int w_kolumny);
+void transpozycja(int tab[][N]);
+bool czySymetryczna(int tablica[][N]);
+void czySymetrycznaMSG(bool);
+int **tworzenieTablicy(int &M, int &L);
+void tablicaNaKonsole(int**, int, int);
+void wypelnienieLosowe(int**, int, int);
+void usuwanieTablicy(int**, int);
 int main() {
-    int A[N][N] = {}, p, k, AT[N][N]={};
-    bool test;
+    int A[N][N] = {}, p, k, AT[N][N]={}, w_kolumny = 0, M, L, zadanie;
+    bool test, utworzenie=false;
     char typ;
+
     srand(time(NULL));
-    cout << "Podaj liczbe p przedzialu liczbowy do wypelnienia tablicy <p,k>: " << endl;
-    cin >> p;
-    cout << "Podaj liczbe k przedzialu liczbowy do wypelnienia tablicy <p,k>: " << endl;
-    cin >> k;
-    //wypelnienie tablicy
-    for (int j = 0; j < N; j++) {
-        for (int i = j; i < N; i++) {
-            A[j][i] = rand() % (k - p + 1) + p;
+    while(zadanie!=9) {
+        cout<<"Wybierz działanie: "<<endl
+            <<"(1) symetryczne wypelnienie i wyswietlnie tablicy A"<<endl
+            <<"(2) wyznacznie i wyswietlenie wierszy tablicy A z najwieksza suma"<<endl
+            <<"(3) sprawdzanie symetrycznosci tablicy przed i po sortowaniu, sortowanie wybrancyh wierszy"<<endl
+            <<"(4) transpozycja tabilcy A i wyswietlanie przed i po transpozycji"<<endl
+            <<"(5) sprawdz czy tablica A jest symetryczna i wyswitel ja"<<endl
+            <<"(6) stworz tablice dynamiczna"<<endl
+            <<"(9) zakoncz program"<<endl
+            <<"numer: ";
+        cin>>zadanie;
+        if (utworzenie == false && zadanie != 1 && zadanie!=6 && zadanie!=9) zadanie = 0; //dopisac tablice dynamiczna, ona nie wymaga
+        switch (zadanie) {
+            case 0: {
+                cout << "Nie mozna wykonac dzialan na pustej tablicy!"<<endl;
+                break;
+            }
+                //symetryczne wypelnienie i wyswietlnie tablicy A
+            case 1: {
+                cout << "Podaj liczbe p przedzialu liczbowy do wypelnienia tablicy <p,k>: " << endl;
+                cin >> p;
+                cout << "Podaj liczbe k przedzialu liczbowy do wypelnienia tablicy <p,k>: " << endl;
+                cin >> k;
+                constructTablica(A, p, k);
+                utworzenie = true;
+                break;
+            }
+            case 2: {
+                wierszNajwiekszaSuma(A);
+                break;
+            }
+            //sprawdzanie symetrycznosci tablicy przed i po sortowaniu, sortowanie wybrancyh wierszy
+            case 3: {
+                test = czySymetryczna(A);
+                czySymetrycznaMSG(test);
+                tablicaNaKonsole(A);
+                while (w_kolumny != 10) {
+                    cout << endl << "Wybierz indeks kolumny do sortowania: <0, 9>, aby zakonczyc sorotwnaie wybierz (10): ";
+                    cin >> w_kolumny;
+                    if(w_kolumny!=10) {
+                        cout << endl << endl << "Podaj typ kolejnosc sortowania malejaca-m, rosnaca-r: ";
+                        cin >> typ;
+                        sortowanie(A, typ, w_kolumny);
+                        cout << endl << "po sortowaniu" << endl;
+                        tablicaNaKonsole(A);
+                    }
+                }
+                break;
+            }
+            //transpozycja tabilcy A i wyswietlanie przed i po transpozycji
+            case 4: {
+                tablicaNaKonsole(A);
+                transpozycja(A);
+                cout << endl << "Transpozycja tablicy A: " << endl;
+                tablicaNaKonsole(A);
+                break;
+            }
+            //sprawdzenie symetrycznosci tablicy A i wyswietlnie jej
+            case 5: {
+                tablicaNaKonsole(A);
+                test = czySymetryczna(A);
+                czySymetrycznaMSG(test);
+                break;
+            }
+            //tworzenie tablicy dynamicznej
+            case 6: {
+                int **tablica = tworzenieTablicy(M, L);
+                wypelnienieLosowe(tablica, M, L);
+                tablicaNaKonsole(tablica, M, L);
+                usuwanieTablicy(tablica, M);
+                break;
+            }
         }
     }
-    //wyswietlenie tablicy
-    cout << "Tablica losowa wypelniona powyzej przekatnej: " << endl;
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            cout << setw(4) << A[i][j];
-        }
-        cout << endl;
-    }
-    //symetryczne wypelnienie
-    int r = 0, przejscie;
-    for (int k = N - 1; k >= 0; k--) {
-        r++;
-        przejscie = N - r;
-        for (int w = 0; w < przejscie; w++) {
-            A[k][w] = A[w][k];
-        }
-    }
-    cout << endl << endl << "Symetryczne dopelniona tablica A: " << endl;
-    //wyswitlniene tablicy symetrcznej
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            cout << setw(4) << A[i][j];
-        }
-        cout << endl;
-    }
-    //wiersz ktorego suma ma najwieksza wartosc
-    int max = 0, maxp = 0, wier[N] = {};
+    return 0;
+}
+void wierszNajwiekszaSuma(int tab[][N]){
+    int max = 0, maxp, wierszeSumy[N] = {};
     for (int i = 0; i < N; i++) {
         maxp = 0;
         for (int j = 0; j < N; j++) {
-            maxp += A[i][j];
+            maxp += tab[i][j];
         }
-        wier[i] = maxp;
+        wierszeSumy[i] = maxp;
         if (maxp > max) {
             max = maxp;
         }
     }
     cout << "wiersze tabeli z najwieksza suma (indeksy): ";
-    int licznik = 0, wiersze[N] = {};
+    int licznik = 0, wierszeIndeksy[N] = {};
     for (int i = 0; i < N; i++) {
-        if (wier[i] == max) {
+        if (wierszeSumy[i] == max) {
             licznik++;
             cout << i << " ";
-            wiersze[i] = i;
+            wierszeIndeksy[i] = i;
         }
     }
     cout << endl << "Wypisanie wierszy z najwieksza suma: " << endl;
-//    for(int i=0; i<licznik; i++){
+    //problem gdy indeks = 0
+    //    for(int i=0; i<licznik; i++){
     for (int i = 0; i < N; i++) {
-        if (wiersze[i] != 0 || licznik > N - 1) {
+        if (wierszeIndeksy[i] != 0 || licznik > N - 1) {
             for (int j = 0; j < N; j++) {
-                cout << A[j][wiersze[i]] << " ";
+                cout << tab[j][wierszeIndeksy[i]] << " ";
             }
             cout << endl;
         }
     }
 //    }
-//    //sprawdzenie symetrycznosci dla A przed sortowaniem
-    test = czySymetryczna(A);
-    czySymetrycznaMSG(test);
-//    sortowanie kolumn
-//    sortowanie rosnace
-
-    int w_kolumny = 0;
-    cout << endl << "Wybierz indeks kolumny do sortowania: <0, 9>: ";
-    cin >> w_kolumny;
-    cout << endl << endl << "Podaj typ kolejnosc sortowania malejaca-m, rosnaca-r: ";
-    cin >> typ;
-
+}
+void constructTablica(int tab[][N], int p, int k){
+    int r=0, przejscie;
+    for (int j = 0; j < N; j++) {
+        for (int i = j; i < N; i++) {
+            tab[j][i] = rand() % (k - p + 1) + p;
+        }
+    }
+    for (int k = N - 1; k >= 0; k--) {
+        r++;
+        przejscie = N - r;
+        for (int w = 0; w < przejscie; w++) {
+            tab[k][w] = tab[w][k];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << setw(4) << tab[i][j];
+        }
+        cout << endl;
+    }
+}
+void tablicaNaKonsole(int tab[][N]){
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << setw(4) << tab[i][j];
+        }
+        cout << endl;
+    }
+}
+void sortowanie(int A[][N], char typ, int w_kolumny){
     if (typ == 'r') {
         for (int j = 0; j < N; j++) {
             for (int i = 1; i < N - j; i++) {
@@ -127,27 +173,31 @@ int main() {
             }
         }
     } else cout << "podano nieprawidlowy znak, nie wykonano sortowania";
-    cout << endl << "po sortowaniu" << endl;
+}
+void transpozycja(int tab[][N]){
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            cout << setw(4) << A[i][j];
+            tab[i][j] = tab[j][i];
         }
-        cout << endl;
     }
-    //transpozycja A
-    transpozycja(A, AT);
-    //wyswietlenie AT
-    cout << endl << "Transpozycja tablicy A: " << endl;
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            cout << setw(4) << AT[i][j] << " ";
+}
+bool czySymetryczna(int tablica[][N]) {
+    int r = 0, przejscie;
+    for (int k = N - 1; k >= 0; k--) {
+        r++;
+        przejscie = N - r;
+        for (int w = 0; w < przejscie; w++) {
+            if (tablica[k][w] == tablica[w][k]);
+            else return false;
         }
-        cout << endl;
     }
-    test = czySymetryczna(A);
-    czySymetrycznaMSG(test);
-
-    int M, L;
+    return true;
+}
+void czySymetrycznaMSG(bool test){
+    if (test == true) cout  << "symetryczna" << endl;
+    else cout << "niesymetryczna" <<endl;
+}
+int **tworzenieTablicy(int &M, int &L){
     cout << "Podaj liczbe wierszy nowej tablicy: ";
     cin >> M;
     cout << "Podaj liczbe kolumn nowej tablicy: ";
@@ -156,22 +206,29 @@ int main() {
     for (int i = 0; i < M; i++) {
         nowa[i] = new int[L];
     }
-
+    return nowa;
+}
+void tablicaNaKonsole(int **tab, int M, int L){
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < L; j++) {
+            cout << setw(4) << tab[i][j];
+        }
+        cout << endl;
+    }
+}
+void wypelnienieLosowe(int **tab, int M, int L){
+    int granica;
+    cout<<"Podaj granice wypelnienia (liczby naturalne): ";
+    cin>>granica;
     for(int i=0; i<M; i++){
         for(int j=0; j<L; j++){
-            nowa[i][j]=rand()%11;
+            tab[i][j]=rand()%granica;
         }
     }
-    for(int i=0; i<M; i++){
-        for(int j=0; j<L; j++){
-            cout<<setw(4)<<nowa[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-
+}
+void usuwanieTablicy(int **tablica, int M){
     for (int i = 0; i < M; i++){
-        delete[] nowa[i];
+        delete[] tablica[i];
     }
-    delete [] nowa;
-    return 0;
+    delete [] tablica;
 }
