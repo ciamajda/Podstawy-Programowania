@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+//Wiktor Stępniewski
 using namespace std;
 const int N = 10;
 void wierszNajwiekszaSuma(int tab[][N]);
@@ -73,8 +74,6 @@ int main() {
             case 4: {
                 tablicaNaKonsole(A);
                 transpozycja(A);
-                cout << endl << "Transpozycja tablicy A: " << endl;
-                tablicaNaKonsole(A);
                 break;
             }
             //sprawdzenie symetrycznosci tablicy A i wyswietlnie jej
@@ -118,8 +117,6 @@ void wierszNajwiekszaSuma(int tab[][N]){
         }
     }
     cout << endl << "Wypisanie wierszy z najwieksza suma: " << endl;
-    //problem gdy indeks = 0
-    //    for(int i=0; i<licznik; i++){
     for (int i = 0; i < N; i++) {
         if (wierszeIndeksy[i] != 0 || licznik > N - 1) {
             for (int j = 0; j < N; j++) {
@@ -175,10 +172,18 @@ void sortowanie(int A[][N], char typ, int w_kolumny){
     } else cout << "podano nieprawidlowy znak, nie wykonano sortowania";
 }
 void transpozycja(int tab[][N]){
+    int tmp[N][N];
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            tab[i][j] = tab[j][i];
+            tmp[i][j] = tab[j][i];
         }
+    }
+    cout << endl << "Transpozycja tablicy A: " << endl;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << setw(4) << tmp[i][j];
+        }
+        cout << endl;
     }
 }
 bool czySymetryczna(int tablica[][N]) {

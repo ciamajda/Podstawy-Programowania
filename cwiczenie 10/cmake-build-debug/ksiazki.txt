@@ -28,8 +28,8 @@ Powiesc
 1961
 1900
 1896
-Shakespear
-Shakespear
+Shakespeare
+Shakespeare
 Prus
 Prus
 Mickiewicz
@@ -47,4 +47,7 @@ Sienkiewicz
 1921
 1921
 1846
-1846
+1846Solaris
+Krzyzacy
+Czlowiek z Marsa
+Solaris

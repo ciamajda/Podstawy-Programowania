@@ -2,9 +2,11 @@
 #include <fstream>
 #include <string>
 #include <cstring>
-//cin.getline(zdanie, 50) funkcja pozwalajaca na wczytanie zdania ze spacjami
-//strcmp(tekst1, tekst2)
+#include <stdio.h>
+#include <string.h>
+
 //wesja bez wskaznika
+
 using namespace std;
 const int N=10;
 
@@ -18,32 +20,79 @@ struct Ksiazka{
     char rodzaj[20];
     Pisarz autor;
 };
-void wczytajDoTablicy(Ksiazka tab[]){
 
+void getPisarz(Pisarz nazwa);
+void getKsiazka(Ksiazka nazwa);
+void zapiszDoPliku(char nazwiskoAutora[20], Ksiazka tab[]);
+void jakiGatunek(Ksiazka tab[]);
+void sortowanie(Ksiazka tab[]);
+void tablicaNaKonsole(Ksiazka tab[]);
+//void odczytajPlik_zapiszDoTablicy()
+
+int main() {
+    Ksiazka tab[N]={};
+
+    ifstream bookFile;
+    bookFile.open("ksiazki.txt");
+
+    if(bookFile.is_open()){
+        for(int i=0; i<N; i++){
+            bookFile.getline(tab[i].tytul, 50);
+        }
+        for(int i=0; i<N; i++) {
+            bookFile.getline(tab[i].rodzaj, 20);
+        }
+        for(int i=0; i<N; i++) {
+            bookFile >> tab[i].rok_wydania;
+        }
+        bookFile.ignore();
+        for(int i=0; i<N; i++) {
+            bookFile.getline(tab[i].autor.nazwisko, 20);
+        }
+        for(int i=0; i<N; i++) {
+            bookFile>>tab[i].autor.rok_urodzenia;
+        }
+    }
+    else{
+        cout<<"Plik nie istnieje!";
+    }
+    bookFile.close();
+    tablicaNaKonsole(tab);
+
+    zapiszDoPliku("Lem", tab);
+
+    sortowanie(tab);
+
+    jakiGatunek(tab);
+    zapiszDoPliku("Lem", tab);
+    tablicaNaKonsole(tab);
+
+    return 0;
 }
 void getPisarz(Pisarz nazwa){
     cout<<nazwa.nazwisko<<" urodzony/a w "<<nazwa.rok_urodzenia<<" roku." <<endl;
 }
 void getKsiazka(Ksiazka nazwa){
-    cout<<"tytuł: "<<nazwa.tytul<<" - rok wydania "<<nazwa.rok_wydania<<",rodzaj: "<<nazwa.rodzaj<<" autor: "<<nazwa.autor.nazwisko<<", urodzony/a w "<<nazwa.autor.rok_urodzenia<<" roku";
+    cout<<"tytuł: "<<nazwa.tytul<<" - rok wydania "<<nazwa.rok_wydania<<", rodzaj: "<<nazwa.rodzaj<<" autor: "<<nazwa.autor.nazwisko<<", urodzony/a w "<<nazwa.autor.rok_urodzenia<<" roku";
 }
-void zapiszDoPliku(string nazwiskoAutora, Ksiazka tab[]) {
+void zapiszDoPliku(char nazwiskoAutora[20], Ksiazka tab[]){
     fstream bookFile;
     bookFile.open("ksiazki.txt", ios::app);
     for (int i = 0; i < N; i++) {
-        if (nazwiskoAutora == tab[i].autor.nazwisko) {
+        if (strcmp(nazwiskoAutora, tab[i].autor.nazwisko)==0) {
             bookFile << tab[i].tytul << endl;
         }
     }
 }
-
 void jakiGatunek(Ksiazka tab[]){
-    string gatunek;
-    cout<<"Podaj gatunek: ";
-    cin >> gatunek;
+    char gatunek[20];
+    cout<<"Dostepne gatunki: Tragedia, Powiesc, Nowela, Dramat, Epopeja"<<endl;
+    cout<<"Wprowadz wybrany gatunek: ";
+    cin>>gatunek;
+    cout<<endl<<"##### Ksiazki z gatunku "<<gatunek<<" #####"<<endl;
     for(int i=0; i<N; i++){
-        if(tab[i].rodzaj==gatunek){
-            cout<<tab[i].tytul<<" "<<tab[i].autor.nazwisko<<endl;
+        if(strcmp(tab[i].rodzaj, gatunek)==0){
+            cout<<"Tytuł: "<<tab[i].tytul<<" Nazwisko autora: "<<tab[i].autor.nazwisko<<endl;
         }
     }
 }
@@ -56,76 +105,25 @@ void sortowanie(Ksiazka tab[]){
         }
     }
     ofstream alf;
-    alf.open("alfabetycznie.txt");
+    alf.open("alfabetycznie.txt", ios::trunc);
+    alf<<"*****Książki w kolejnosci alfabetycznej*****\n";
     for(int i=0; i<N; i++){
-        alf<<tab[i].tytul<<endl;
-        alf<<tab[i].rodzaj<<endl;
-        alf<<tab[i].rok_wydania<<endl;
-        alf<<tab[i].autor.nazwisko<<endl;
-        alf<<tab[i].autor.rok_urodzenia;
+        alf<<endl<<"=====Ksiazka numer "<<i+1<<"=====\n";
+        alf<<"Tytul: "<<tab[i].tytul<<endl;
+        alf<<"Gatunek: "<<tab[i].rodzaj<<endl;
+        alf<<"Rok wydania: "<<tab[i].rok_wydania<<endl;
+        alf<<"Nazwisko autora: "<<tab[i].autor.nazwisko<<endl;
+        alf<<"Rok urodzenia autora: "<<tab[i].autor.rok_urodzenia<<endl;
     }
     alf.close();
-
 }
 void tablicaNaKonsole(Ksiazka tab[]){
     for(int i=0; i<N; i++){
-        cout<<endl<<tab[i].tytul<<endl;
+        cout<<endl<<"=====Ksiazka numer "<<i+1<<"====="<<endl;
+        cout<<tab[i].tytul<<endl;
         cout<<tab[i].rodzaj<<endl;
         cout<<tab[i].rok_wydania<<endl;
         cout<<tab[i].autor.nazwisko<<endl;
         cout<<tab[i].autor.rok_urodzenia;
     }
-}
-int main() {
-    Ksiazka tab[N]={};
-    fstream bookFile;
-    bookFile.open("test.txt");
-    if(bookFile.is_open()){
-        cout<<"-----Tytuly ksiazek-----"<<endl;
-        for(int i=0; i<N; i++){
-            bookFile.getline(tab[i].tytul, 50);
-            cout<<tab[i].tytul<<endl;
-        }
-        cout<<"-----Gatunki ksiazek-----"<<endl;
-        for(int i=0; i<N; i++) {
-            bookFile.getline(tab[i].rodzaj, 20);
-            cout << tab[i].rodzaj<<endl;
-        }
-        cout<<"-----Rok wydania ksiazek-----"<<endl;
-        for(int i=0; i<N; i++) {
-            bookFile >>tab[i].rok_wydania;
-            cout << tab[i].rok_wydania<<endl;
-        }
-        cout<<"-----Nazwiska autorow-----"<<endl;
-        for(int i=0; i<=N; i++) {
-            bookFile.getline(tab[i].autor.nazwisko, 20);
-            cout << tab[i].autor.nazwisko<<endl;
-        }
-        cout<<"-----Daty urodzenia autorow-----"<<endl;
-        for(int i=0; i<N; i++) {
-            bookFile>>tab[i].autor.rok_urodzenia;
-            cout << tab[i].autor.rok_urodzenia<<endl;
-        }
-//        for(int i=0; i<N; i++){
-//            bookFile.getline(tab[i].tytul, 50);
-//            bookFile.get();
-//            bookFile.getline(tab[i].rodzaj, 20);
-//            bookFile >>tab[i].rok_wydania;
-//            bookFile.get();
-//            bookFile.getline(tab[i].autor.nazwisko, 20);
-//            bookFile>>tab[i].autor.rok_urodzenia;
-//        }
-//        tablicaNaKonsole(tab);
-    }
-    else{
-        cout<<"Plik nie istnieje!";
-    }
-    bookFile.close();
-//    zapiszDoPliku("\n cpp", tab);
-    jakiGatunek(tab);
-    zapiszDoPliku("Lem", tab);
-    tablicaNaKonsole(tab);
-    sortowanie(tab);
-    tablicaNaKonsole(tab);
-    return 0;
 }
