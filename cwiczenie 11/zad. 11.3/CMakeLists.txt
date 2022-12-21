@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
-project(zad__11_3)
+project(untitled)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 
-add_executable(zad__11_3 main.cpp)
+add_executable(untitled main.cpp)

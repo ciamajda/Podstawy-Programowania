@@ -1,63 +1,120 @@
 #include <iostream>
-#include <bitset>
 #include <fstream>
 #include <string>
 
 using namespace std;
-const int N = 12; // Liczba znakow do zaszyfrowqania+1(znak konca)
-void encrypt(char tab[], char klucz[])
+const int N = 12;// Liczba znakow do zaszyfrowania+1(znak konca)
+const int K = 4;//klucz
+
+void encrypt(char tab[N], char safeKey[]);
+void decrypt(char encrypted[], char safeKey[]);
+void loadEncrypted (char (&encryptedTab)[]);
+void loadTextToArray (char (&array)[], int textLength, string fileName);
+
+int main() {
+    char text[N] = {}, safeKey[K] = {}, encryptedTab[N] = {};
+
+    loadTextToArray (text, N, "input.txt");
+
+    loadTextToArray(safeKey, K, "key.txt");
+
+    encrypt(text, safeKey);
+
+    loadEncrypted(encryptedTab);
+
+    decrypt(encryptedTab, safeKey);
+
+    return 0;
+}
+
+void encrypt(char tab[N], char safeKey[])
 {
-    char enrypted[N] = {};
+    char encrypted[N] = {};
     int tmp = 0;
-    for (int i = 0; i < N - 1; i++)
+    for (int i = 0; i < N; i++)
     {
-        if (tmp != 4 ?: tmp = 0)
+        if (tmp != 4)
         {
-            enrypted[i] = tab[i] ^ klucz[tmp];
+            encrypted[i] = tab[i] ^ safeKey[tmp];
+            tmp++;
+        }
+        else
+        {
+            tmp = 0;
+            encrypted[i] = tab[i] ^ safeKey[tmp];
             tmp++;
         }
     }
+
     ofstream encryptedtxt;
     encryptedtxt.open("encrypted.txt", ios::trunc);
     if (encryptedtxt.is_open())
     {
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N - 1; i++)
         {
-            encryptedtxt << enrypted[i];
+            encryptedtxt << encrypted[i];
         }
+        encryptedtxt << '.';
     }
     encryptedtxt.close();
 }
 
-int main()
+void decrypt(char encrypted[], char safeKey[])
 {
-    string test;
-    char zdanie[N] = {}, klucz[4] = {};
-    ifstream input, key;
 
-    input.open("nowy.txt", ios::binary);
+    char decrypted[N] = {};
+    int tmp = 0;
+    for (int i = 0; i < N - 1; i++)
+    {
+        if (tmp != 4)
+        {
+            decrypted[0] = encrypted[0] ^ safeKey[0];
+            decrypted[i] = encrypted[i] ^ safeKey[tmp];
+            tmp++;
+        }
+        else
+        {
+            tmp = 0;
+            decrypted[i] = encrypted[i] ^ safeKey[tmp];
+            tmp++;
+        }
+    }
+    ofstream decryption;
+    decryption.open("decryption.txt", ios::out);
+    if (decryption.is_open())
+    {
+        for (int i = 0; i < N - 1; i++)
+        {
+            decryption << decrypted[i];
+        }
+        decryption << '.';
+    }
+}
+void loadEncrypted (char (&encryptedTab)[])
+{
+    ifstream zaszyfrowane;
+    zaszyfrowane.open("encrypted.txt", ios::binary);
+    if (zaszyfrowane.is_open())
+    {
+        zaszyfrowane.getline(&encryptedTab[0], N);
+    }
+    else {
+        cout << "Nie znaleziono pliku encrypted";
+    }
+    zaszyfrowane.close();
+}
+
+void loadTextToArray(char (&array)[], int textLength, string fileName)
+{
+    ifstream input;
+    input.open(fileName, ios::binary);
     if (input.is_open())
     {
-        input.getline(&zdanie[0], N, '.');
+        input.getline(&array[0], textLength, '.');
     }
     else
-        cout << "Plik nie istnieje.";
+    {
+        cout << "Plik "<<fileName<<" nie istnieje.";
+    }
     input.close();
-
-    key.open("klucz.txt");
-    if (key.is_open())
-    {
-        key.getline(&klucz[0], 5, '.');
-    }
-    else
-        cout << "Plik nie istnieje.";
-    key.close();
-
-    encrypt(zdanie, klucz);
-    for (int i = 0; i < N; i++)
-    {
-        cout << zdanie[i];
-    }
-
-    return 0;
 }
