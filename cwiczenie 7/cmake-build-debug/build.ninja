@@ -36,7 +36,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /Users/wiktorstepniewski/Desktop/Podstawy$ Programowania/cwiczenie$ 7/cmake-build-debug/
+cmake_ninja_workdir = /Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy$ Programowania/cwiczenie$ 7/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target cwiczenie_7
 
@@ -46,7 +46,7 @@ cmake_ninja_workdir = /Users/wiktorstepniewski/Desktop/Podstawy$ Programowania/c
 
 build cmake_object_order_depends_target_cwiczenie_7: phony || CMakeFiles/cwiczenie_7.dir
 
-build CMakeFiles/cwiczenie_7.dir/main.cpp.o: CXX_COMPILER__cwiczenie_7_Debug /Users/wiktorstepniewski/Desktop/Podstawy$ Programowania/cwiczenie$ 7/main.cpp || cmake_object_order_depends_target_cwiczenie_7
+build CMakeFiles/cwiczenie_7.dir/main.cpp.o: CXX_COMPILER__cwiczenie_7_Debug /Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy$ Programowania/cwiczenie$ 7/main.cpp || cmake_object_order_depends_target_cwiczenie_7
   DEP_FILE = CMakeFiles/cwiczenie_7.dir/main.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++20
   OBJECT_DIR = CMakeFiles/cwiczenie_7.dir
@@ -76,7 +76,7 @@ build cwiczenie_7: CXX_EXECUTABLE_LINKER__cwiczenie_7_Debug CMakeFiles/cwiczenie
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 7/cmake-build-debug" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd "/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 7/cmake-build-debug" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -87,7 +87,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 7/cmake-build-debug" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S"/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 7" -B"/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 7/cmake-build-debug"
+  COMMAND = cd "/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 7/cmake-build-debug" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S"/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 7" -B"/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 7/cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -103,7 +103,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 7/cmake-build-debug
+# Folder: /Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 7/cmake-build-debug
 
 build all: phony cwiczenie_7
 
