@@ -1,0 +1,3 @@
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 11/cmake-build-debug/CMakeFiles/cwiczenie_11.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 11/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/wiktorstepniewski/Desktop/Podstawy Programowania/cwiczenie 11/cmake-build-debug/CMakeFiles/rebuild_cache.dir

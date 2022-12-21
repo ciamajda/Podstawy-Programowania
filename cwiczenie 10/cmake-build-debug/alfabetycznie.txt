@@ -1,0 +1,71 @@
+*****Książki w kolejnosci alfabetycznej*****
+
+=====Ksiazka numer 1=====
+Tytul: Czlowiek z Marsa
+Gatunek: Nowela
+Rok wydania: 1946
+Nazwisko autora: Lem
+Rok urodzenia autora: 1921
+
+=====Ksiazka numer 2=====
+Tytul: Solaris
+Gatunek: Powiesc
+Rok wydania: 1961
+Nazwisko autora: Lem
+Rok urodzenia autora: 1921
+
+=====Ksiazka numer 3=====
+Tytul: Pan Tadeusz
+Gatunek: Epopeja
+Rok wydania: 1834
+Nazwisko autora: Mickiewicz
+Rok urodzenia autora: 1798
+
+=====Ksiazka numer 4=====
+Tytul: Dziady cz.3
+Gatunek: Dramat
+Rok wydania: 1832
+Nazwisko autora: Mickiewicz
+Rok urodzenia autora: 1798
+
+=====Ksiazka numer 5=====
+Tytul: Lalka
+Gatunek: Powiesc
+Rok wydania: 1890
+Nazwisko autora: Prus
+Rok urodzenia autora: 1847
+
+=====Ksiazka numer 6=====
+Tytul: Kamizelka
+Gatunek: Nowela
+Rok wydania: 1882
+Nazwisko autora: Prus
+Rok urodzenia autora: 1847
+
+=====Ksiazka numer 7=====
+Tytul: Hamlet
+Gatunek: Tragedia
+Rok wydania: 1600
+Nazwisko autora: Shakespeare
+Rok urodzenia autora: 1564
+
+=====Ksiazka numer 8=====
+Tytul: Makbet
+Gatunek: Tragedia
+Rok wydania: 1606
+Nazwisko autora: Shakespeare
+Rok urodzenia autora: 1564
+
+=====Ksiazka numer 9=====
+Tytul: Krzyzacy
+Gatunek: Powiesc
+Rok wydania: 1900
+Nazwisko autora: Sienkiewicz
+Rok urodzenia autora: 1846
+
+=====Ksiazka numer 10=====
+Tytul: Quo vadis
+Gatunek: Powiesc
+Rok wydania: 1896
+Nazwisko autora: Sienkiewicz
+Rok urodzenia autora: 1846
