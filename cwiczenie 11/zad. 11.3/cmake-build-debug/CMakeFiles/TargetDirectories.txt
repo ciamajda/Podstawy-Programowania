@@ -1,3 +1,0 @@
-/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 11/zad. 11.3/cmake-build-debug/CMakeFiles/untitled.dir
-/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 11/zad. 11.3/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/wiktorstepniewski/Desktop/SynologyDrive/Podstawy Programowania/cwiczenie 11/zad. 11.3/cmake-build-debug/CMakeFiles/rebuild_cache.dir

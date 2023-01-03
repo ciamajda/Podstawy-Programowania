@@ -47,7 +47,8 @@ Sienkiewicz
 1921
 1921
 1846
-1846Solaris
+1846
+Solaris
 Krzyzacy
 Czlowiek z Marsa
 Solaris
